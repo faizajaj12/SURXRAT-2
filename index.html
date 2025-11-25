@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PERINGATAN! Sistem Terinfeksi</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #ff0000;
+            font-family: monospace;
+            text-align: center;
+            overflow: hidden;
+            animation: glitch 1s linear infinite;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gambar-seram {
+            width: 300px;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: glitch 1s linear infinite, fadeIn 2s ease-in-out forwards;
+        }
+
+        p {
+            font-size: 1.5em;
+            animation: glitch 1s linear infinite, fadeIn 2s ease-in-out forwards;
+        }
+
+        @keyframes glitch {
+            2%,6% {
+                transform: translate(-1px,0);
+            }
+            4%,8% {
+                transform: translate(1px,0);
+            }
+            to {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="gambar_seram.jpg" alt="Gambar Seram" class="gambar-seram">
+        <h1>PERINGATAN!</h1>
+        <p>Sistem Anda telah terinfeksi virus berbahaya. Semua data akan segera terenkripsi!</p>
+    </div>
+    <audio id="suara-seram" src="suara_seram.mp3" autoplay loop></audio>
+
+    <script>
+        // Efek getar
+        function getarLayar() {
+            let interval = setInterval(function(){
+                window.moveBy(10, 10);
+                window.moveBy(-10, -10);
+            }, 50);
+
+            // Hentikan getaran setelah beberapa detik
+            setTimeout(function() {
+                clearInterval(interval);
+            }, 5000);
+        }
+
+        // Efek layar putih
+        function layarPutih() {
+            let putih = document.createElement('div');
+            putih.style.position = 'fixed';
+            putih.style.top = '0';
+            putih.style.left = '0';
+            putih.style.width = '100%';
+            putih.style.height = '100%';
+            putih.style.backgroundColor = 'white';
+            putih.style.zIndex = '9999';
+            putih.style.opacity = '0';
+            putih.style.animation = 'fadeLayarPutih 2s forwards';
+            document.body.appendChild(putih);
+
+            setTimeout(function() {
+                document.body.removeChild(putih);
+            }, 2000);
+        }
+
+        @keyframes fadeLayarPutih {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        getarLayar();
+        setInterval(layarPutih, 7000);
+    </script>
+</body>
+</html>
